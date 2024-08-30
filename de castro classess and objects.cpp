@@ -138,3 +138,74 @@ void addBook(){
 	}
 	}
 }
+
+
+void displayBook(){
+	char choice;
+	cout<<"\n---List of Books---"<<endl;
+	if(bookcount==0){
+		cout<<"\nBook Library is Empty!... Returning to Menu\n";
+		menu();
+	}
+	cout<<"\n|\tTitle\t\t|\tAuthor\t\t|\tYear\t\t|"<<endl;
+	for(int i=0;i<bookcount;i++){
+	cout<<"|\t" << lib[i].getTitle() << "\t\t|\t" << lib[i].getAuthor() << "\t\t|\t" << lib[i].getYear()<<"\t\t|"<<endl;
+	}
+	cout<<"\nEnter [1] to return to Menu: ";
+	cin>>choice;
+	if(choice=='1'){
+		system("cls");
+		menu();
+	}
+	else{
+		cout<<"\nInvalid Input";
+		system("cls");
+		displayBook();
+	}
+}
+
+void searchBook(){
+	char choice;
+	string search;
+	bool find = false;
+	
+	cout<<"\nEnter Book title to Search: ";
+	cin.ignore();
+	getline(cin,search);
+	
+	for(int i=0;i<bookcount;i++){
+		if(lib[i].getTitle()==search){
+			cout<<"\nBook Found!"<<endl;
+			cout<<"Title: "<<b1.getTitle()<<endl;
+			cout<<"Author: "<<b1.getAuthor()<<endl;
+			cout<<"Year: "<<b1.getYear()<<endl;
+			find=true;
+			break;
+		}
+	}
+	if(!find){
+		cout<<"\nBook not Found!"<<endl;
+	}
+	cout<<"\nPress [1] to Search Another Book, Press [2] to return to Menu: ";
+	cin>>choice;
+	cout<<endl;
+	if(choice=='1'){
+		searchBook();
+	}
+	else if(choice=='2'){
+		system("cls");
+		menu();
+	}
+	else{
+		cout<<"Invalid Input!!!";
+		cout<<"\nPress [1] to Add Search Book, Press [2] to return to Menu: ";
+		cin>>choice;
+	}
+}
+
+
+int main(){
+	cout<<"Library Management\n\n";
+	menu();
+	return 0;
+}
